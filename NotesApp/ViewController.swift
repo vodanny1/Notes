@@ -10,12 +10,10 @@ import UIKit
 
 class ViewController: UITableViewController, UINavigationControllerDelegate {
     var notes = [Note]()
-    //let editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
         title = "Notes"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(goToWrite))
