@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var toolbar: UIToolbar!
     var notes = [Note]()
-    
+    var moveIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,15 @@ class ViewController: UIViewController {
             }
             count += 1
         }
+        
+        if moveIndex != -1 {
+            let tempNote = notes[moveIndex]
+            notes.remove(at: moveIndex)
+            notes.insert(tempNote, at: 0)
+            moveIndex = -1
+        }
+        
+        
         self.save()
         self.tableView.reloadData()
     }
@@ -106,6 +115,7 @@ extension ViewController: UITableViewDelegate {
         if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
             vc.note = notes[indexPath.row]
             vc.i = indexPath.row
+            self.moveIndex = indexPath.row
             navigationController?.pushViewController(vc, animated: true)
         }
     }
