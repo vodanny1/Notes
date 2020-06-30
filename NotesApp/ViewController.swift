@@ -119,6 +119,14 @@ extension ViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.save()
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
