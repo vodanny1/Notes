@@ -24,10 +24,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-        
+                
         paragraph.delegate = self // used to see text changed in UITextView
         paragraph.font = .systemFont(ofSize: 15)
         
@@ -41,6 +38,11 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        toolbar.setBackgroundImage(UIImage(),
+                                   forToolbarPosition: .any,
+                                   barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -85,5 +87,5 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         navigationItem.rightBarButtonItem = nil
         navigationItem.rightBarButtonItems = [dismissKeyboard, shareItem]
     }
-
+    
 }

@@ -7,14 +7,18 @@
 //
 
 import UIKit
-
-class ViewController: UITableViewController, UINavigationControllerDelegate {
+// UINavigationControllerDelegate
+class ViewController: UIViewController {
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var toolbar: UIToolbar!
     var notes = [Note]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         title = "Notes"
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(goToWrite))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
@@ -23,9 +27,14 @@ class ViewController: UITableViewController, UINavigationControllerDelegate {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         
+        toolbar.setBackgroundImage(UIImage(),
+                                        forToolbarPosition: .any,
+                                        barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
         let defaults = UserDefaults.standard
         
-        if let savedNotes = defaults.object(forKey: "final2") as? Data {
+        if let savedNotes = defaults.object(forKey: "final3") as? Data {
             let jsonDecoder = JSONDecoder()
             
             do {
@@ -34,6 +43,11 @@ class ViewController: UITableViewController, UINavigationControllerDelegate {
                 print("Failed to load notes")
             }
         }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.contentInsetAdjustmentBehavior = .never
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,25 +61,6 @@ class ViewController: UITableViewController, UINavigationControllerDelegate {
         self.save()
         self.tableView.reloadData()
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Notes", for: indexPath)
-        cell.textLabel?.text = notes[indexPath.row].body
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
-            vc.note = notes[indexPath.row]
-            vc.i = indexPath.row
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
     
     @objc func goToWrite() {
         if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
@@ -78,13 +73,15 @@ class ViewController: UITableViewController, UINavigationControllerDelegate {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.save()
-        }
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            notes.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            self.save()
+//        }
+//    }
+    
+    
     
     @objc func edit(sender: UIBarButtonItem) {
         //let deleteBtn = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: )
@@ -96,10 +93,35 @@ class ViewController: UITableViewController, UINavigationControllerDelegate {
         
         if let savedData = try? jsonEncoder.encode(notes) {
             let defaults = UserDefaults.standard
-            defaults.set(savedData, forKey: "final2")
+            defaults.set(savedData, forKey: "final3")
         } else {
             print("Failed to save notes")
         }
     }
 }
+
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
+            vc.note = notes[indexPath.row]
+            vc.i = indexPath.row
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return notes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Notes", for: indexPath)
+        cell.textLabel?.text = notes[indexPath.row].body
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        return cell
+    }
+}
+
 
