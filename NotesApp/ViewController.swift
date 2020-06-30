@@ -7,7 +7,7 @@
 //
 
 import UIKit
-// UINavigationControllerDelegate
+
 class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var toolbar: UIToolbar!
@@ -47,7 +47,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInsetAdjustmentBehavior = .never
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +65,6 @@ class ViewController: UIViewController {
             moveIndex = -1
         }
         
-        
         self.save()
         self.tableView.reloadData()
     }
@@ -83,8 +81,7 @@ class ViewController: UIViewController {
     }
     
     @objc func edit(sender: UIBarButtonItem) {
-        //let deleteBtn = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: )
-        isEditing = !isEditing
+        tableView.isEditing = !tableView.isEditing
     }
     
     func save() {
