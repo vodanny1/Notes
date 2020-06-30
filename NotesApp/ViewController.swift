@@ -82,16 +82,6 @@ class ViewController: UIViewController {
         }
     }
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            notes.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            self.save()
-//        }
-//    }
-    
-    
-    
     @objc func edit(sender: UIBarButtonItem) {
         //let deleteBtn = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: )
         isEditing = !isEditing
