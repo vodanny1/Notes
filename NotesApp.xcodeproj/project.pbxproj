@@ -10,6 +10,8 @@
 		1FF39C971E8F5CB59787BB70 /* libPods-NotesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7FEACA2547B9970082A019 /* libPods-NotesApp.a */; };
 		991AFB6724A0160300A910E3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991AFB6624A0160300A910E3 /* DetailViewController.swift */; };
 		991AFB6B24A0169A00A910E3 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991AFB6A24A0169A00A910E3 /* Note.swift */; };
+		993787F124B519AF00FADDD2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993787F024B519AF00FADDD2 /* Extension.swift */; };
+		993787F324B51D6800FADDD2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993787F224B51D6800FADDD2 /* RegisterViewController.swift */; };
 		99434655249FFA8C006E5993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99434654249FFA8C006E5993 /* AppDelegate.swift */; };
 		99434657249FFA8C006E5993 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99434656249FFA8C006E5993 /* SceneDelegate.swift */; };
 		99434659249FFA8C006E5993 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99434658249FFA8C006E5993 /* ViewController.swift */; };
@@ -24,6 +26,8 @@
 		1B7FEACA2547B9970082A019 /* libPods-NotesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		991AFB6624A0160300A910E3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		991AFB6A24A0169A00A910E3 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		993787F024B519AF00FADDD2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		993787F224B51D6800FADDD2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		99434651249FFA8C006E5993 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99434654249FFA8C006E5993 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99434656249FFA8C006E5993 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		993787EF24B5199300FADDD2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				99434654249FFA8C006E5993 /* AppDelegate.swift */,
+				99434656249FFA8C006E5993 /* SceneDelegate.swift */,
+				993787F024B519AF00FADDD2 /* Extension.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		99434648249FFA8C006E5993 = {
 			isa = PBXGroup;
 			children = (
@@ -79,12 +93,11 @@
 		99434653249FFA8C006E5993 /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
+				993787EF24B5199300FADDD2 /* Resources */,
 				99434662249FFA8D006E5993 /* Info.plist */,
 				998AE38924B5114700B531FB /* GoogleService-Info.plist */,
 				998AE38B24B513A000B531FB /* Class */,
-				99434654249FFA8C006E5993 /* AppDelegate.swift */,
 				998AE38C24B513AC00B531FB /* Storyboard */,
-				99434656249FFA8C006E5993 /* SceneDelegate.swift */,
 				998AE38D24B513C600B531FB /* Controllers */,
 				9943465D249FFA8D006E5993 /* Assets.xcassets */,
 			);
@@ -114,6 +127,7 @@
 				99434658249FFA8C006E5993 /* ViewController.swift */,
 				991AFB6624A0160300A910E3 /* DetailViewController.swift */,
 				998AE38E24B513F600B531FB /* LoginViewController.swift */,
+				993787F224B51D6800FADDD2 /* RegisterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,6 +241,8 @@
 			files = (
 				998AE38F24B513F600B531FB /* LoginViewController.swift in Sources */,
 				991AFB6B24A0169A00A910E3 /* Note.swift in Sources */,
+				993787F124B519AF00FADDD2 /* Extension.swift in Sources */,
+				993787F324B51D6800FADDD2 /* RegisterViewController.swift in Sources */,
 				99434659249FFA8C006E5993 /* ViewController.swift in Sources */,
 				99434655249FFA8C006E5993 /* AppDelegate.swift in Sources */,
 				99434657249FFA8C006E5993 /* SceneDelegate.swift in Sources */,
