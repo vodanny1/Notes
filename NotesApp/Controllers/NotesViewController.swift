@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NotesViewController.swift
 //  NotesApp
 //
 //  Created by Danny Vo on 2020-06-21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NotesViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var toolbar: UIToolbar!
     var notes = [Note]()
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController: UITableViewDelegate {
+extension NotesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
             vc.note = notes[indexPath.row]
@@ -116,7 +116,7 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension NotesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }

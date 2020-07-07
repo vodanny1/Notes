@@ -95,11 +95,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didTapRegister() {
-        
+        let vc = RegisterViewController()
+        vc.title = "Create Account"
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func loginButtonTapped() {
-        print("Button works")
+        let vc = NotesViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
