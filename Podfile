@@ -5,7 +5,6 @@ target 'NotesApp' do
 
   # Pods for NotesApp
 
-pod 'Firebase/Analytics'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
