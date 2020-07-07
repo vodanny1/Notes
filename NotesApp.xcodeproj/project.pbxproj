@@ -17,6 +17,7 @@
 		9943465E249FFA8D006E5993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9943465D249FFA8D006E5993 /* Assets.xcassets */; };
 		99434661249FFA8D006E5993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9943465F249FFA8D006E5993 /* LaunchScreen.storyboard */; };
 		998AE38A24B5114700B531FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 998AE38924B5114700B531FB /* GoogleService-Info.plist */; };
+		998AE38F24B513F600B531FB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998AE38E24B513F600B531FB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		99434660249FFA8D006E5993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99434662249FFA8D006E5993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998AE38924B5114700B531FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		998AE38E24B513F600B531FB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5AFAC447080BF432F92F9D2 /* Pods-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.release.xcconfig"; path = "Target Support Files/Pods-NotesApp/Pods-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
 		B574D294394433084BE0B93B /* Pods-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.debug.xcconfig"; path = "Target Support Files/Pods-NotesApp/Pods-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,18 +79,43 @@
 		99434653249FFA8C006E5993 /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
-				99434654249FFA8C006E5993 /* AppDelegate.swift */,
-				99434656249FFA8C006E5993 /* SceneDelegate.swift */,
-				991AFB6A24A0169A00A910E3 /* Note.swift */,
-				99434658249FFA8C006E5993 /* ViewController.swift */,
-				991AFB6624A0160300A910E3 /* DetailViewController.swift */,
-				9943465A249FFA8C006E5993 /* Main.storyboard */,
-				9943465D249FFA8D006E5993 /* Assets.xcassets */,
-				9943465F249FFA8D006E5993 /* LaunchScreen.storyboard */,
 				99434662249FFA8D006E5993 /* Info.plist */,
 				998AE38924B5114700B531FB /* GoogleService-Info.plist */,
+				998AE38B24B513A000B531FB /* Class */,
+				99434654249FFA8C006E5993 /* AppDelegate.swift */,
+				998AE38C24B513AC00B531FB /* Storyboard */,
+				99434656249FFA8C006E5993 /* SceneDelegate.swift */,
+				998AE38D24B513C600B531FB /* Controllers */,
+				9943465D249FFA8D006E5993 /* Assets.xcassets */,
 			);
 			path = NotesApp;
+			sourceTree = "<group>";
+		};
+		998AE38B24B513A000B531FB /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				991AFB6A24A0169A00A910E3 /* Note.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		998AE38C24B513AC00B531FB /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9943465F249FFA8D006E5993 /* LaunchScreen.storyboard */,
+				9943465A249FFA8C006E5993 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		998AE38D24B513C600B531FB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99434658249FFA8C006E5993 /* ViewController.swift */,
+				991AFB6624A0160300A910E3 /* DetailViewController.swift */,
+				998AE38E24B513F600B531FB /* LoginViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C100BA08747FF523112834A4 /* Pods */ = {
@@ -97,7 +124,6 @@
 				B574D294394433084BE0B93B /* Pods-NotesApp.debug.xcconfig */,
 				A5AFAC447080BF432F92F9D2 /* Pods-NotesApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -199,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998AE38F24B513F600B531FB /* LoginViewController.swift in Sources */,
 				991AFB6B24A0169A00A910E3 /* Note.swift in Sources */,
 				99434659249FFA8C006E5993 /* ViewController.swift in Sources */,
 				99434655249FFA8C006E5993 /* AppDelegate.swift in Sources */,

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SNg-Qg-2w3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="9Fk-OU-iiX">
+            <objects>
+                <viewController storyboardIdentifier="Detail" id="nGP-8N-VcP" customClass="DetailViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JWa-L9-FOW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3wP-ID-Wek">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="100" maxY="0.0"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3B7-eh-mIr">
+                                <rect key="frame" x="0.0" y="833" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="io5-uU-zJ5"/>
+                                    <barButtonItem systemItem="trash" id="9al-Jl-LSz">
+                                        <connections>
+                                            <action selector="trash:" destination="nGP-8N-VcP" id="uth-fM-GJ2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3wP-ID-Wek" firstAttribute="centerX" secondItem="JWa-L9-FOW" secondAttribute="centerX" id="bYh-ZU-GaC"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="3wP-ID-Wek" secondAttribute="bottom" constant="-34" id="cvB-6X-sCs"/>
+                            <constraint firstItem="3wP-ID-Wek" firstAttribute="top" secondItem="F1o-FF-mJa" secondAttribute="top" id="kTT-9Z-E2h"/>
+                            <constraint firstItem="3wP-ID-Wek" firstAttribute="leading" secondItem="F1o-FF-mJa" secondAttribute="leading" id="nSI-Lc-Yn1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F1o-FF-mJa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="xQk-1w-sTD"/>
+                    <connections>
+                        <outlet property="paragraph" destination="3wP-ID-Wek" id="Ojm-TW-x9Y"/>
+                        <outlet property="toolbar" destination="3B7-eh-mIr" id="Nz0-0P-UGW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nVP-0z-Ae7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3063.768115942029" y="-8.0357142857142847"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wU0-52-fK2">
+            <objects>
+                <viewController id="3Kc-HI-RUU" customClass="ViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YWK-xx-Daq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8wL-iy-bXp">
+                                <rect key="frame" x="0.0" y="88" width="414" height="745"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Notes" id="j3J-pd-GL5">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j3J-pd-GL5" id="KdP-eb-HIw">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgK-my-tyt">
+                                <rect key="frame" x="0.0" y="833" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EHh-4k-sx7"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GKX-CI-yL9"/>
+                                    <barButtonItem title="Delete" image="trash" catalog="system" id="kzZ-NM-2hL"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8wL-iy-bXp" firstAttribute="leading" secondItem="iP0-dW-jdi" secondAttribute="leading" id="0mJ-Vb-Jlm"/>
+                            <constraint firstItem="8wL-iy-bXp" firstAttribute="centerX" secondItem="YWK-xx-Daq" secondAttribute="centerX" id="2oj-9v-kn5"/>
+                            <constraint firstItem="8wL-iy-bXp" firstAttribute="trailing" secondItem="mgK-my-tyt" secondAttribute="trailing" id="52O-sh-ATN"/>
+                            <constraint firstItem="8wL-iy-bXp" firstAttribute="leading" secondItem="mgK-my-tyt" secondAttribute="leading" id="A6E-kd-xfe"/>
+                            <constraint firstItem="8wL-iy-bXp" firstAttribute="top" secondItem="iP0-dW-jdi" secondAttribute="top" id="HIX-DM-V7f"/>
+                            <constraint firstItem="mgK-my-tyt" firstAttribute="top" secondItem="8wL-iy-bXp" secondAttribute="bottom" id="ImM-L5-tat"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="mgK-my-tyt" secondAttribute="bottom" constant="-15" id="wFy-N8-vNa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iP0-dW-jdi"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ghg-Vm-ONy"/>
+                    <connections>
+                        <outlet property="tableView" destination="8wL-iy-bXp" id="6Ym-Pk-vqu"/>
+                        <outlet property="toolbar" destination="mgK-my-tyt" id="MzW-8Q-ORE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfc-41-j09" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2079.7101449275365" y="-8.0357142857142847"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HwJ-kI-gp7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="371-pa-3vl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z02-mO-Yh8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3Kc-HI-RUU" kind="relationship" relationship="rootViewController" id="1Gh-wl-Zbu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvY-4b-fvI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1169.5652173913045" y="-8.0357142857142847"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="qTi-CY-69X">
+            <objects>
+                <viewController id="SNg-Qg-2w3" customClass="LoginViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xfU-Lx-ZKQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xgO-rN-1WJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JfK-bo-s2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="746"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <resources>
+        <image name="trash" catalog="system" width="121" height="128"/>
+    </resources>
+</document>
