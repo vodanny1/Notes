@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     
@@ -48,6 +49,7 @@ class RegisterViewController: UIViewController {
     private let emailField: UITextField = {
         let field = UITextField()
         field.autocorrectionType = .no
+        field.autocapitalizationType = .none
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
@@ -90,11 +92,12 @@ class RegisterViewController: UIViewController {
         
         title = "Log In"
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
         
-        registerBtn.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        registerBtn.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         emailField.delegate = self
         passwordField.delegate = self
+        firstnameField.delegate = self
+        lastnameField.delegate = self
         
         // Add subviews
         view.addSubview(scrollView)
@@ -131,18 +134,72 @@ class RegisterViewController: UIViewController {
                                    height: 52)
     }
     
-    @objc func didTapRegister() {
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        navigationController?.pushViewController(vc, animated: true)
+    @objc func registerButtonTapped() {
+        firstnameField.resignFirstResponder()
+        lastnameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        
+        guard let firstName = firstnameField.text,
+            let lastName = lastnameField.text,
+            let email = emailField.text,
+            let password = passwordField.text,
+            !email.isEmpty,
+            !password.isEmpty,
+            !firstName.isEmpty,
+            !lastName.isEmpty,
+            password.count >= 6 else {
+                alertUserLoginError()
+                return
+        }
+        
+        // Firebase Registration
+        print("Calling log in")
+        DatabaseManager.shared.userExists(with: email) { [weak self] exists in
+            guard let strongself = self else { return }
+            
+            guard !exists else {
+                // User Already Exists
+                strongself.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
+                return
+            }
+            print("firebase Auth")
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+                guard authResult != nil, error == nil else {
+                    print("Error creating user")
+                    return
+                }
+                
+                let noteUser = NoteUser(firstName: firstName, lastName: lastName, emailAddress: email)
+                DatabaseManager.shared.insertUser(with: noteUser) { (success) in
+                    if success {
+                        print("Inserted successfully")
+                    }
+                }
+            }
+            strongself.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
     
-    @objc func loginButtonTapped() {
-        print("Button works")
+    func alertUserLoginError(message: String = "Please enter all information to create a new account.") {
+        let ac = UIAlertController(title: "Missing information", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(ac, animated: true)
     }
 }
 
 extension RegisterViewController: UITextFieldDelegate {
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstnameField {
+            lastnameField.becomeFirstResponder()
+        } else if textField == lastnameField {
+            emailField.becomeFirstResponder()
+        } else if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            registerButtonTapped()
+        }
+        return true
+    }
 }
 
