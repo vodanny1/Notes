@@ -17,34 +17,41 @@ class NotesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
         title = "Notes"
-        
+        view.backgroundColor = .white
+
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(goToWrite))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         
+        let logoutBtn = UIBarButtonItem(title: "Log out", style: .done, target: self, action: #selector(logoutTapped))
+        
+        let composeBtn = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(goToWrite))
+        
+        navigationItem.rightBarButtonItems = [composeBtn, logoutBtn]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
+
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        
+
         toolbar.setBackgroundImage(UIImage(),
                                         forToolbarPosition: .any,
                                         barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-        
+
         let defaults = UserDefaults.standard
-        
+
         if let savedNotes = defaults.object(forKey: "final3") as? Data {
             let jsonDecoder = JSONDecoder()
-            
+
             do {
                 notes = try jsonDecoder.decode([Note].self, from: savedNotes)
             } catch {
                 print("Failed to load notes")
             }
         }
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInsetAdjustmentBehavior = .never
@@ -58,24 +65,24 @@ class NotesViewController: UIViewController {
             }
             count += 1
         }
-        
+
         if moveIndex != -1 {
             let tempNote = notes[moveIndex]
             notes.remove(at: moveIndex)
             notes.insert(tempNote, at: 0)
             moveIndex = -1
         }
-        
+
         self.save()
         self.tableView.reloadData()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         validateAuth()
     }
-    
+
     private func validateAuth() {
         if FirebaseAuth.Auth.auth().currentUser == nil {
             let vc = LoginViewController()
@@ -85,6 +92,19 @@ class NotesViewController: UIViewController {
         }
     }
     
+    @objc func logoutTapped() {
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            
+            let vc = LoginViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
+        } catch {
+            print("Failed ot log out")
+        }
+    }
+
     @objc func goToWrite() {
         if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
             // push the text into next view
@@ -95,14 +115,14 @@ class NotesViewController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     @objc func edit(sender: UIBarButtonItem) {
         tableView.isEditing = !tableView.isEditing
     }
-    
+
     func save() {
         let jsonEncoder = JSONEncoder()
-        
+
         if let savedData = try? jsonEncoder.encode(notes) {
             let defaults = UserDefaults.standard
             defaults.set(savedData, forKey: "final3")
@@ -111,7 +131,6 @@ class NotesViewController: UIViewController {
         }
     }
 }
-
 
 extension NotesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,7 +141,7 @@ extension NotesViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
@@ -136,7 +155,7 @@ extension NotesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Notes", for: indexPath)
         cell.textLabel?.text = notes[indexPath.row].body
